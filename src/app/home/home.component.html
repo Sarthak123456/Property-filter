@@ -1,0 +1,65 @@
+<p>
+  home works!
+</p>
+
+<form (ngSubmit)= 'onSave()' >
+<!-- <form class="example-form" #city = 'ngForm' >
+  <mat-form-field class="example-full-width">
+    <input type="text" placeholder="Pick one" id='city' [(ngModel)] ='city' aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form> -->
+
+<form #city = 'ngForm' id='filter' class="example-form">
+
+  <mat-form-field class="example-full-width">
+    <input type="text" name='city' id='city' [(ngModel)] ='cityName.city' placeholder="Search for location or keyword" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option" >
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+
+
+<mat-slider
+  thumbLabel
+  [displayWith]="formatLabel"
+  tickInterval="1000"
+  min="1"
+  max="100000"></mat-slider>
+
+  <ng5-slider [(value)]="minBudget" [(highValue)]="maxBudget" [options]="Budget"></ng5-slider>
+  <ng5-slider [(value)]="minBedroom" [(highValue)]="maxBedroom" [options]="Bedroom"></ng5-slider>
+  <ng5-slider [(value)]="minBathroom" [(highValue)]="maxBathroom" [options]="Bathroom"></ng5-slider>
+
+  <button type='submit'>Submit</button>
+
+</form>
+
+<ul *ngFor = 'let data of filteredData'>
+    <li>
+        {{ data.property_name}}
+      </li>
+
+    <li>
+          {{ data.price}}
+    </li>
+
+    <li>
+            {{ data.no_of_bedrooms}}
+    </li>
+
+  <li>
+    {{ data.no_of_bathrooms}}
+  </li>
+
+  <li>
+      {{ data.match_score}}
+    </li>
+</ul>
