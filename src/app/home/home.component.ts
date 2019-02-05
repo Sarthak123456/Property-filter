@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
   response: any;
   result: any;
   results: any;
-  cityName = {'city' : ''};
+  cityName = {'city' : '', 'distance' : ''};
   lat: number;
   lon: number;
     myControl = new FormControl();
@@ -148,7 +148,7 @@ export class HomeComponent implements OnInit {
     this.response = res;
     this.lat = this.response.results[0].geometry.location.lat;
     this.lon = this.response.results[0].geometry.location.lng;
-    this.result = JSON.stringify(`lat : ${this.lat} , lon : ${this.lon}, min_budget = ${this.min_budget}, max_budget = ${this.max_budget}, min_bedroom : ${this.min_bedroom}, max_bedroom : ${this.max_bedroom} ,min_bathroom : ${this.min_bathroom}, max_bathroom : ${this.max_bathroom}`);
+    this.result = JSON.stringify(`city_name : ${this. cityName.city} , distance_from_user :${this.cityName.distance} ,lat : ${this.lat} , lon : ${this.lon}, min_budget : ${this.min_budget}, max_budget : ${this.max_budget}, min_bedroom : ${this.min_bedroom}, max_bedroom : ${this.max_bedroom} ,min_bathroom : ${this.min_bathroom}, max_bathroom : ${this.max_bathroom}`);
 
        console.log(this.result);
 
@@ -163,27 +163,13 @@ export class HomeComponent implements OnInit {
 
   });
 }
-
-// getWeather() {
-//   // console.log(this.cityName.city);
-//   this.loadingWeather = 'loading...';
-//   this.data.getWeather()
-//     .subscribe(res => {
-//       this.weather = res;
-//       // console.log(this.weather);
-//       const currentUser = localStorage.getItem('currentUser');
-//   localStorage.setItem(currentUser + 'city' + JSON.stringify(this.weather.id) , this.weather.name);
-//       }, err => this.loadingWeather = 'Something went wrong!'
-
-//     );
-// }
     formatLabel(value: number | null) {
       if (!value) {
         return 0;
       }
 
-      if (value >= 1000) {
-        return Math.round(value / 1000) + 'km';
+      if (value >= 1) {
+        return Math.round(value / 1) + 'km';
       }
 
       return value;

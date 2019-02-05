@@ -1,8 +1,7 @@
-<p>
-  home works!
-</p>
+<div class='roow'>
 
 <form (ngSubmit)= 'onSave()' >
+
 <!-- <form class="example-form" #city = 'ngForm' >
   <mat-form-field class="example-full-width">
     <input type="text" placeholder="Pick one" id='city' [(ngModel)] ='city' aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
@@ -13,7 +12,7 @@
     </mat-autocomplete>
   </mat-form-field>
 </form> -->
-
+<div class='col-md-6'>
 <form #city = 'ngForm' id='filter' class="example-form">
 
   <mat-form-field class="example-full-width">
@@ -25,41 +24,58 @@
     </mat-autocomplete>
   </mat-form-field>
 </form>
+</div>
 
 
+
+<div class='col-md-6'>
+  <form  #city = 'ngForm' >
 <mat-slider
   thumbLabel
   [displayWith]="formatLabel"
-  tickInterval="1000"
+  tickInterval="1"
   min="1"
-  max="100000"></mat-slider>
+  max="50" name='city' id='city' [(ngModel)] ='cityName.distance' ></mat-slider>
+  </form>
+</div>
 
+
+
+<div class='col-md-6'>
   <ng5-slider [(value)]="minBudget" [(highValue)]="maxBudget" [options]="Budget"></ng5-slider>
-  <ng5-slider [(value)]="minBedroom" [(highValue)]="maxBedroom" [options]="Bedroom"></ng5-slider>
-  <ng5-slider [(value)]="minBathroom" [(highValue)]="maxBathroom" [options]="Bathroom"></ng5-slider>
 
-  <button type='submit'>Submit</button>
+</div>
+
+
+  <div class='col-md-6'>
+  <ng5-slider [(value)]="minBedroom" [(highValue)]="maxBedroom" [options]="Bedroom"></ng5-slider>
+  </div>
+
+
+  <div class='col-md-6'>
+  <ng5-slider [(value)]="minBathroom" [(highValue)]="maxBathroom" [options]="Bathroom"></ng5-slider>
+  </div>
+
+  <div class='col-md-6'>
+  <button class = 'btn btn-primary' [disabled]='!filteredData' type='submit'>Submit</button>
+  </div>
 
 </form>
+</div>
+<div class="row">
+      <div class="col-sm-6" *ngFor = 'let data of filteredData'>
+<div class="card" >
 
-<ul *ngFor = 'let data of filteredData'>
-    <li>
-        {{ data.property_name}}
-      </li>
+    <h5 class="card-header"> {{ data.property_name}}</h5>
+    <div class="card-body">
+      <h5 class="card-title"> {{ data.price}}$</h5>
+      <p class="card-text">Bedrooms : {{ data.no_of_bedrooms}}</p>
+      <p class="card-text">Bathrooms: {{ data.no_of_bathrooms}}</p>
+      <a class="btn btn-warning"> {{ data.match_score}} %</a>
+    </div>
+  </div>
+</div>
+</div>
 
-    <li>
-          {{ data.price}}
-    </li>
 
-    <li>
-            {{ data.no_of_bedrooms}}
-    </li>
 
-  <li>
-    {{ data.no_of_bathrooms}}
-  </li>
-
-  <li>
-      {{ data.match_score}}
-    </li>
-</ul>
